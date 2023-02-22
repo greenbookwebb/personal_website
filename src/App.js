@@ -1,6 +1,7 @@
 import './App.css';
 import React from 'react';
 import { ReactTerminal } from "react-terminal";
+import axios from 'axios';
 
 function App() {
 
@@ -12,6 +13,10 @@ function App() {
   const commands = {
     help: (
       <span>
+        <h2>Skills</h2><strong>software_languages</strong> - This pront displays software development langages, and skill level.  <br />
+        <br />
+        
+        <h2>Site Changes</h2>
         <strong>clear</strong> - clears the console. <br />
         <strong>change_prompt &lt;PROMPT&gt;</strong> - Change the prompt of the
         terminal. <br />
@@ -24,7 +29,15 @@ function App() {
         buttons on control bar. <br />
         <strong>evaluate_math_expression &lt;EXPR&gt;</strong> - Evaluates a
         mathematical expression (eg, <strong>4*4</strong>) by hitting a public
-        API, api.mathjs.org.
+        API, api.mathjs.org. <br />
+        
+      </span>
+    ),
+
+
+    software_languages: (
+      <span>
+        <strong>Javascript</strong> <br />
       </span>
     ),
 
@@ -56,6 +69,21 @@ function App() {
       setControlButtons(!controlButtons);
     },
 
+    check_weather: async (city) => {
+      try {
+        
+      const data = await await axios.get(`https://wttr.in/${city}?ATm`);
+      console.log("data", data);
+      console.log("data.data", data.data);
+      
+      return <div className="weather" dangerouslySetInnerHTML={{ __html: data.data.replace(/\n/g, "<br>") }} />
+      } catch (error) {
+        console.log("error", error);
+      }
+      
+    },
+
+
     evaluate_math_expression: async (expr) => {
       const response = await fetch(
         `https://api.mathjs.org/v4/?expr=${encodeURIComponent(expr)}`
@@ -66,11 +94,13 @@ function App() {
 
   const welcomeMessage = (
     <>
+    
     <h1 style={{ fontWeight: "bold" }}>
       Welcome to Lachlan Webb's personal website. <br /></h1>
       <h3>
       Type "help" for all available commands. <br />
     </h3>
+    
     </>
   );
 

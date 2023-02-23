@@ -5,10 +5,14 @@ import axios from 'axios';
 
 function App() {
 
-  const [theme, setTheme] = React.useState("dark");
+  const [theme, setTheme] = React.useState("light");
   const [controlBar, setControlBar] = React.useState(true);
   const [controlButtons, setControlButtons] = React.useState(true);
   const [prompt, setPrompt] = React.useState(">>>");
+
+  function openPdf() {
+    window.open(process.env.PUBLIC_URL + "/Lachlan_Webb_CV.pdf", "_blank");
+  };
   
   const commands = {
     help: (
@@ -34,10 +38,41 @@ function App() {
       </span>
     ),
 
+    profile: (
+
+      <div>
+        <h2>ABOUT</h2>
+        <p><strong>Name:</strong> Lachlan Webb</p>
+        <p>I was the Financial Engineering Lead at Mycelium, which is a service provider to the Tracer DAO. I have a
+deep knowledge of DeFi derivatives, AMMs, market making, and arbitrage strategies. I have co-designed both
+a Perpetual Swaps mechanism (Perpetual Future), and a novel mechanism named Perpetual Pools (Leveraged
+Token). </p><p>
+In November 2022, I made the decision to leave Tracer DAO to pursue my passion for software engineering.
+Despite a successful tenure as a DeFi project designer, I felt limited in my growth potential and sought to expand
+my skillset as a full-stack developer. Since then, I have dedicated myself to continuously learning through various
+bootcamps in Javascript, Solidity, and React. Although my software engineering experience may be limited, I
+am learning at an accelerated pace and bring with me a deep understanding of DeFi projects and mechanisms
+from my previous role. I am confident in my ability to apply my knowledge and skills to create innovative and
+impactful solutions in the software engineering industry.</p>
+        
+        <button onClick={openPdf}>CV</button>
+        <p><strong>Email:</strong></p> <p> <a href="mailto:lachlanwebb123@gmail.com" target="blank">lachlanwebb123@gmail.com</a></p>
+        <p><strong>Github:</strong></p> <p> <a href="https://github.com/greenbookwebb">https://github.com/greenbookwebb</a></p>
+        <p><strong>LinkedIn:</strong></p> <p> <a href="https://au.linkedin.com/in/lachlan-webb-141048118">https://au.linkedin.com/in/lachlan-webb-141048118</a></p>
+
+        
+
+      </div>
+    ),
 
     software_languages: (
       <span>
-        <strong>Javascript</strong> <br />
+        <h3><strong>Python</strong></h3>
+        <h3><strong>Javascript (React)</strong></h3>
+        <h3><strong>HTML</strong></h3>
+        <h3><strong>CSS</strong></h3>
+        <h3><strong>Solidity</strong></h3>
+        
       </span>
     ),
 
@@ -76,7 +111,7 @@ function App() {
       return <div>
       {data && (
         <div>
-          <img src={data.avatar_url} alt="User Avatar" style={{ borderRadius: '50%' }} />
+          <img src={data.avatar_url} alt="User Avatar" style={{ borderRadius: '50%', width: '250px', height: 'auto' }} />
           <h2>Profile: <a href={data.html_url}>{data.login}</a></h2>
           <p>{data.bio}</p>
           <p>Created at: {data.created_at}</p>
@@ -107,10 +142,9 @@ function App() {
         </div>)
     },
 
-    Resume: () => {
-      window.open(process.env.PUBLIC_URL + "/Lachlan_Webb_CV.pdf", "_blank");
+    CV: () => {
+      openPdf();
     },
-
 
     evaluate_math_expression: async (expr) => {
       const response = await fetch(
@@ -125,12 +159,17 @@ function App() {
     
     <h1 style={{ fontWeight: "bold" }}>
       Welcome to Lachlan Webb's personal website. <br /></h1>
-      <h3>
+      <h4>
+      Type "profile" to display profile of Lachlan Webb. <br />
+      Type "CV" to see Lachlan Webb's CV.<br />
       Type "help" to see the list of available commands. <br />
-    </h3>
+    </h4>
+
     
     </>
   );
+
+
 
   React.useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);

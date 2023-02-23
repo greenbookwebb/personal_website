@@ -10,14 +10,9 @@
 }
 
 .App-header {
-  
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-
-
-
-
 }
 
 [data-theme="dark"] {
@@ -56,3 +51,11 @@
   text-align: center;
 }
 
+button{
+  padding: 10px;
+  width: 20%;
+  background-color:rgb(2, 40, 51);
+  color: #ffffff;
+  border-color: #1a87b5;
+  border-width: 5px
+}

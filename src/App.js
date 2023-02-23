@@ -5,10 +5,11 @@ import axios from 'axios';
 
 function App() {
 
-  const [theme, setTheme] = React.useState("light");
+  const [theme, setTheme] = React.useState("dark");
   const [controlBar, setControlBar] = React.useState(true);
   const [controlButtons, setControlButtons] = React.useState(true);
-  const [prompt, setPrompt] = React.useState(">>>");
+  const [prompt, setPrompt] = React.useState("visitor@lachlan_webb: $ ~ ");
+
 
   function openPdf() {
     window.open(process.env.PUBLIC_URL + "/Lachlan_Webb_CV.pdf", "_blank");
@@ -17,7 +18,14 @@ function App() {
   const commands = {
     help: (
       <span>
-        <h2>Skills</h2><strong>software_languages</strong> - This pront displays software development langages, and skill level.  <br />
+        <h2>Skills & Experience</h2><strong>software_languages</strong> - This pront displays software development langages, and skill level.  <br />
+        <strong>profile</strong> - Display profile for Lachlan Webb.  <br />
+        <strong>getGithubProfile</strong> - Gets Github profile.  <br />
+        <strong>getGithubRepos</strong> - Gets Github repos.  <br />
+        <strong>CV</strong> - Gets CV.  <br />
+        <strong>openTwitter</strong> - Opens Lachlan Webb's twitter profile. <br />
+
+        
         <br />
         
         <h2>Site Changes</h2>
@@ -123,6 +131,7 @@ impactful solutions in the software engineering industry.</p>
     </div>
     },
 
+
     getGithubRepos: async () => {   
       const {data} =  await axios.get(`https://api.github.com/users/greenbookwebb/repos`);
       console.log("data",data);
@@ -144,6 +153,10 @@ impactful solutions in the software engineering industry.</p>
 
     CV: () => {
       openPdf();
+    },
+
+    openTwitter: () => {
+      window.open("https://twitter.com/defihotguy", "_blank");
     },
 
     evaluate_math_expression: async (expr) => {
@@ -168,8 +181,6 @@ impactful solutions in the software engineering industry.</p>
     
     </>
   );
-
-
 
   React.useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);

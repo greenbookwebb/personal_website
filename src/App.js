@@ -14,6 +14,18 @@ function App() {
   function openPdf() {
     window.open(process.env.PUBLIC_URL + "/Lachlan_Webb_CV.pdf", "_blank");
   };
+  function openNature() {
+    window.open(process.env.PUBLIC_URL + "/Nature_Article.pdf", "_blank");
+  };
+  function openPerpSwaps() {
+    window.open(process.env.PUBLIC_URL + "/Tracer_Perpetual_Swaps_Whitepaper.pdf", "_blank");
+  };
+  function openPerpPools() {
+    window.open(process.env.PUBLIC_URL + "/Tracer_Perpetual_Pools_Litepaper.pdf", "_blank");
+  };
+  function openStablecoin() {
+    window.open(process.env.PUBLIC_URL + "/Tracer_Stablecoin.pdf", "_blank");
+  };
   
   const commands = {
     help: (
@@ -24,6 +36,7 @@ function App() {
         <strong>getGithubRepos</strong> - Gets Github repos.  <br />
         <strong>CV</strong> - Gets CV.  <br />
         <strong>openTwitter</strong> - Opens Lachlan Webb's twitter profile. <br />
+        <strong>publications</strong> - Shows publications/whitepapers I have co-written. <br />
 
         
         <br />
@@ -154,6 +167,20 @@ impactful solutions in the software engineering industry.</p>
     CV: () => {
       openPdf();
     },
+
+    publications: () => (
+      <div>
+      <h2>UQ Publications</h2>
+      <button onClick={openNature}>Climate Risk Publication (Published in Nature)</button>
+
+      <h2>Tracer Publications</h2>
+      <button onClick={openPerpSwaps}>Tracer Perpetual Swaps Whitepaper</button>
+      <button onClick={openPerpPools}>Tracer Perpetual Pools Whitepaper</button>
+      <button onClick={openStablecoin}>Tracer Purchasing Power Stablecoin</button>
+      </div>
+
+
+),
 
     openTwitter: () => {
       window.open("https://twitter.com/defihotguy", "_blank");

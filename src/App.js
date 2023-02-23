@@ -69,18 +69,46 @@ function App() {
       setControlButtons(!controlButtons);
     },
 
-    check_weather: async (city) => {
-      try {
-        
-      const data = await await axios.get(`https://wttr.in/${city}?ATm`);
-      console.log("data", data);
-      console.log("data.data", data.data);
+    getGithubProfile: async () => {   
+      const {data} =  await axios.get(`https://api.github.com/users/greenbookwebb`);
+      console.log("data",data);
       
-      return <div className="weather" dangerouslySetInnerHTML={{ __html: data.data.replace(/\n/g, "<br>") }} />
-      } catch (error) {
-        console.log("error", error);
-      }
+      return <div>
+      {data && (
+        <div>
+          <img src={data.avatar_url} alt="User Avatar" style={{ borderRadius: '50%' }} />
+          <h2>Profile: <a href={data.html_url}>{data.login}</a></h2>
+          <p>{data.bio}</p>
+          <p>Created at: {data.created_at}</p>
+          <p>Public Repos: {data.public_repos}</p>
+          <p>Followers: {data.followers}</p>
+          <p>Following: {data.following}</p>
+        </div>
+      )}
+    </div>
+    },
+
+    getGithubRepos: async () => {   
+      const {data} =  await axios.get(`https://api.github.com/users/greenbookwebb/repos`);
+      console.log("data",data);
       
+      return (
+        <div>
+          <ul>
+            {data.map(repo => (
+              <>
+              <h2 key={repo.id}>{repo.name}</h2>
+              <p key={repo.id}>Description: {repo.description}</p>
+              <p key={repo.id}>Deployed Page: <a href={repo.homepage}>{repo.homepage}</a></p>
+              <p key={repo.id}>Repo Github Page: <a href={repo.html_url}>{repo.html_url}</a></p>
+              </>
+            ))}
+          </ul>
+        </div>)
+    },
+
+    Resume: () => {
+      window.open(process.env.PUBLIC_URL + "/Lachlan_Webb_CV.pdf", "_blank");
     },
 
 
@@ -98,7 +126,7 @@ function App() {
     <h1 style={{ fontWeight: "bold" }}>
       Welcome to Lachlan Webb's personal website. <br /></h1>
       <h3>
-      Type "help" for all available commands. <br />
+      Type "help" to see the list of available commands. <br />
     </h3>
     
     </>

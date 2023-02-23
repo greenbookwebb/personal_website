@@ -18,7 +18,7 @@ function App() {
   const commands = {
     help: (
       <span>
-        <h2>Skills & Experience</h2><strong>software_languages</strong> - This pront displays software development langages, and skill level.  <br />
+        <h2>Skills & Experience commands</h2><strong>software_languages</strong> - This pront displays software development langages, and skill level.  <br />
         <strong>profile</strong> - Display profile for Lachlan Webb.  <br />
         <strong>getGithubProfile</strong> - Gets Github profile.  <br />
         <strong>getGithubRepos</strong> - Gets Github repos.  <br />
@@ -28,7 +28,7 @@ function App() {
         
         <br />
         
-        <h2>Site Changes</h2>
+        <h2>UI commands</h2>
         <strong>clear</strong> - clears the console. <br />
         <strong>change_prompt &lt;PROMPT&gt;</strong> - Change the prompt of the
         terminal. <br />
@@ -166,6 +166,7 @@ impactful solutions in the software engineering industry.</p>
       return await response.text();
     },
   };
+  
 
   const welcomeMessage = (
     <>
